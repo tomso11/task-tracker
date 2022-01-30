@@ -33,10 +33,15 @@ const deleteTask = (id) => {
   setTasks(tasks.filter((task) => task.id !==id))
 }
 
+//Toggle Reminder
+const toggleReminder = (id) => {
+  setTasks(tasks.map((task)=> task.id === id ? {...task, reminder: !task.reminder} : task))
+}
+
   return (
     <div className="container">
       <Header title = {"I'm a title"}/>
-      {tasks.length > 0 ? <Tasks tasks = {tasks} onDelete={deleteTask}/> : ('No tasks to show')}
+      {tasks.length > 0 ? <Tasks tasks = {tasks} onDelete={deleteTask} onToggle={toggleReminder}/> : ('No tasks to show')}
     </div>
   );
 }
